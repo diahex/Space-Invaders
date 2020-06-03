@@ -9,7 +9,7 @@ namespace SpaceInvaders
     static class Program
     {
         /// <summary>
-        /// Hlavní vstupní bod aplikace.
+        /// Hlavní vstupní bod aplikace je tady.
         /// </summary>
         [STAThread]
         static void Main()
