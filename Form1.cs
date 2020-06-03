@@ -100,7 +100,7 @@ namespace SpaceInvaders
 
             if (!Exists) 
             {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\diahex\Desktop\WIN.wav");
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Win"));
                 player.Play();
                 Thread.Sleep(1000);
                 Environment.Exit(0); 
@@ -123,7 +123,7 @@ namespace SpaceInvaders
                     {
                         Delete.Add(idraw);
                         DoesHit = true;
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\diahex\Desktop\BUMOS.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Boom"));
                         player.Play();
                         break;
                     }
@@ -157,7 +157,7 @@ namespace SpaceInvaders
                         {
                             var bullet = new Bullet(new Point(tank.Point.X + 16, tank.Point.Y - 20), tank);
                             Drawables.Add(bullet);
-                            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\diahex\Desktop\PEWOS.wav");
+                            System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Pew"));
                             player.Play();
                         }
                         break;

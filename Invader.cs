@@ -13,7 +13,7 @@ namespace SpaceInvaders
  
         private const int WIDTH = 32;
         private const int HEIGHT = 24;
-        private static readonly Bitmap Bitmap = new Bitmap(@"C:\Users\diahex\Desktop\Invader.png");
+        private static readonly Bitmap Bitmap = new Bitmap(Properties.Resources.Invader);
 
         public Point Point = new Point(0,0);
         public int Direction = 0; // 0=> Right, 1 => Left

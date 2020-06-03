@@ -11,7 +11,7 @@ namespace SpaceInvaders
     {
         private const int WIDTH = 52;
         private const int HEIGHT = 32;
-        private static readonly Bitmap Bitmap = new Bitmap(@"C:\Users\diahex\Desktop\Ship.png");
+        private static readonly Bitmap Bitmap = new Bitmap(Properties.Resources.Ship);
 
         public Point Point = new Point(0, 0);
 

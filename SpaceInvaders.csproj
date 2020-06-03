@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include=".gitignore" />
     <None Include="Properties\Settings.settings">
@@ -90,6 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pictureBox10.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Boom.wav" />
+    <Content Include="Resources\Invader.png" />
+    <Content Include="Resources\Pew.wav" />
+    <Content Include="Resources\Ship.png" />
+    <Content Include="Resources\Win.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
