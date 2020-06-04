@@ -192,8 +192,8 @@ namespace SpaceInvaders
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-           Score1.Text = $"Score: {Convert.ToString(Score)}";
-           Round1.Text = $"Round: {Convert.ToString(Round)}";
+           Score1.Text = $"Score: {Score}";
+           Round1.Text = $"Round: {Round}";
             lock (Drawables)
             {
                 e.Graphics.Clear(Color.Black);
