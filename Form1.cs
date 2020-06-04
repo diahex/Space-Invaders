@@ -14,6 +14,7 @@ namespace SpaceInvaders
 {
     public partial class Form1 : Form
     {
+        int Score = 0;
         private System.Timers.Timer timer;
         const int TIMER_PERIOD = 1000 / 20;
         private List<IDraw> Drawables = new List<IDraw>();
@@ -49,6 +50,16 @@ namespace SpaceInvaders
             Drawables.Add(new Invader(new Point(200, 141)));
             Drawables.Add(new Invader(new Point(250, 141)));
             Drawables.Add(new Invader(new Point(300, 141)));
+           /* Drawables.Add(new Invader(new Point(100, 181)));
+            Drawables.Add(new Invader(new Point(150, 181)));
+            Drawables.Add(new Invader(new Point(200, 181)));
+            Drawables.Add(new Invader(new Point(250, 181)));
+            Drawables.Add(new Invader(new Point(300, 181)));
+            Drawables.Add(new Invader(new Point(100, 221)));
+            Drawables.Add(new Invader(new Point(150, 221)));
+            Drawables.Add(new Invader(new Point(200, 221)));
+            Drawables.Add(new Invader(new Point(250, 221)));
+            Drawables.Add(new Invader(new Point(300, 221))); */
         }
 
         private void InitTimer()
@@ -120,6 +131,7 @@ namespace SpaceInvaders
                     {
                         Delete.Add(idraw);
                         DoesHit = true;
+                        Score += 10;
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Boom"));
                         player.Play();
                         break;
@@ -144,10 +156,10 @@ namespace SpaceInvaders
                 switch (key)
                 {
                     case Keys.Right:
-                        tank.Point.X = Math.Min(tank.Point.X + 5, 700);
+                        tank.Point.X = Math.Min(tank.Point.X + 7, 700);
                         break;
                     case Keys.Left:
-                        tank.Point.X = Math.Max(tank.Point.X - 5, 50);
+                        tank.Point.X = Math.Max(tank.Point.X - 7, 50);
                         break;
                     case Keys.Space:
                         if (Shot == false)
@@ -166,6 +178,8 @@ namespace SpaceInvaders
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
+           e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+           Score1.Text = Convert.ToString(Score);
             lock (Drawables)
             {
                 e.Graphics.Clear(Color.Black);
@@ -197,6 +211,20 @@ namespace SpaceInvaders
         private void KeyJustPressed(object sender, KeyPressEventArgs e)
         {
             
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
         }
 
         /*private void test()
