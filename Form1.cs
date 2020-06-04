@@ -17,7 +17,9 @@ namespace SpaceInvaders
         System.Media.SoundPlayer Win = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Win"));
         System.Media.SoundPlayer Boom = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Boom"));
         System.Media.SoundPlayer Pew = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Pew"));
-        public int Score = 0;
+        int Score = 0;
+        int Round = 1;
+        bool NewRound = false;
         private System.Timers.Timer timer;
         const int TIMER_PERIOD = 1000 / 20;
         private List<IDraw> Drawables = new List<IDraw>();
@@ -53,16 +55,21 @@ namespace SpaceInvaders
             Drawables.Add(new Invader(new Point(200, 141)));
             Drawables.Add(new Invader(new Point(250, 141)));
             Drawables.Add(new Invader(new Point(300, 141)));
-           /* Drawables.Add(new Invader(new Point(100, 181)));
-            Drawables.Add(new Invader(new Point(150, 181)));
-            Drawables.Add(new Invader(new Point(200, 181)));
-            Drawables.Add(new Invader(new Point(250, 181)));
-            Drawables.Add(new Invader(new Point(300, 181)));
-            Drawables.Add(new Invader(new Point(100, 221)));
-            Drawables.Add(new Invader(new Point(150, 221)));
-            Drawables.Add(new Invader(new Point(200, 221)));
-            Drawables.Add(new Invader(new Point(250, 221)));
-            Drawables.Add(new Invader(new Point(300, 221))); */
+        }
+        private void NextRound()
+        {
+            NewRound = false;
+            Round++;
+            Drawables.Add(new Invader(new Point(100, 100)));
+            Drawables.Add(new Invader(new Point(150, 100)));
+            Drawables.Add(new Invader(new Point(200, 100)));
+            Drawables.Add(new Invader(new Point(250, 100)));
+            Drawables.Add(new Invader(new Point(300, 100)));
+            Drawables.Add(new Invader(new Point(100, 141)));
+            Drawables.Add(new Invader(new Point(150, 141)));
+            Drawables.Add(new Invader(new Point(200, 141)));
+            Drawables.Add(new Invader(new Point(250, 141)));
+            Drawables.Add(new Invader(new Point(300, 141)));
         }
 
         private void InitTimer()
@@ -94,7 +101,7 @@ namespace SpaceInvaders
                 {
                     var invader = (Invader)idraw;
                     
-                    if(invader.Point.X > 600)
+                    if(invader.Point.X > 1020)
                     {
                         invader.Direction = 1;
                         invader.Point.Y += 5;
@@ -105,16 +112,21 @@ namespace SpaceInvaders
                         invader.Point.Y += 5;
                     }
                     Exists = true;
-                    invader.InvaderSpeed = 5 + Score / 20;
+                    invader.InvaderSpeed = 5 + Score / 80;
                     invader.Point.X += invader.InvaderSpeed + (-invader.InvaderSpeed * 2 * invader.Direction);
+
                 }
             }
 
             if (!Exists) 
             {
                 Win.Play();
+                NewRound = true;
                 Thread.Sleep(1000);
-                Environment.Exit(0); 
+            }
+            if (Score % 100 == 0 && Score != 0 && NewRound == true)
+            {
+                NextRound();
             }
 
             var bullets = Drawables.Where(d => d is Bullet);
@@ -158,10 +170,10 @@ namespace SpaceInvaders
                 switch (key)
                 {
                     case Keys.Right:
-                        tank.Point.X = Math.Min(tank.Point.X + 7, 700);
+                        tank.Point.X = Math.Min(tank.Point.X + 7, 1020);
                         break;
                     case Keys.Left:
-                        tank.Point.X = Math.Max(tank.Point.X - 7, 50);
+                        tank.Point.X = Math.Max(tank.Point.X - 7, 80);
                         break;
                     case Keys.Space:
                         if (Shot == false)
@@ -180,7 +192,8 @@ namespace SpaceInvaders
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-           Score1.Text = Convert.ToString(Score);
+           Score1.Text = $"Score: {Convert.ToString(Score)}";
+           Round1.Text = $"Round: {Convert.ToString(Round)}";
             lock (Drawables)
             {
                 e.Graphics.Clear(Color.Black);
@@ -226,6 +239,11 @@ namespace SpaceInvaders
 
         private void label1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         /*private void test()
