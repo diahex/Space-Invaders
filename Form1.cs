@@ -14,7 +14,10 @@ namespace SpaceInvaders
 {
     public partial class Form1 : Form
     {
-        int Score = 0;
+        System.Media.SoundPlayer Win = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Win"));
+        System.Media.SoundPlayer Boom = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Boom"));
+        System.Media.SoundPlayer Pew = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Pew"));
+        public int Score = 0;
         private System.Timers.Timer timer;
         const int TIMER_PERIOD = 1000 / 20;
         private List<IDraw> Drawables = new List<IDraw>();
@@ -102,14 +105,14 @@ namespace SpaceInvaders
                         invader.Point.Y += 5;
                     }
                     Exists = true;
+                    invader.InvaderSpeed = 5 + Score / 20;
                     invader.Point.X += invader.InvaderSpeed + (-invader.InvaderSpeed * 2 * invader.Direction);
                 }
             }
 
             if (!Exists) 
             {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Win"));
-                player.Play();
+                Win.Play();
                 Thread.Sleep(1000);
                 Environment.Exit(0); 
             }
@@ -132,8 +135,7 @@ namespace SpaceInvaders
                         Delete.Add(idraw);
                         DoesHit = true;
                         Score += 10;
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Boom"));
-                        player.Play();
+                        Boom.Play();
                         break;
                     }
                 }
@@ -166,8 +168,7 @@ namespace SpaceInvaders
                         {
                             var bullet = new Bullet(new Point(tank.Point.X + 16, tank.Point.Y - 20), tank);
                             Drawables.Add(bullet);
-                            System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.ResourceManager.GetStream("Pew"));
-                            player.Play();
+                            Pew.Play();
                         }
                         break;
                 }
