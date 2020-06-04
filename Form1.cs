@@ -14,9 +14,6 @@ namespace SpaceInvaders
 {
     public partial class Form1 : Form
     {
-        private const int WIDTH = 32;
-        private const int HEIGHT = 24;
-        private static readonly Bitmap Bitmap = new Bitmap(@"C:\Users\diahex\Desktop\Bum.png");
         private System.Timers.Timer timer;
         const int TIMER_PERIOD = 1000 / 20;
         private List<IDraw> Drawables = new List<IDraw>();
