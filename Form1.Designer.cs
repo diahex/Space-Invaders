@@ -32,6 +32,7 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.Score1 = new System.Windows.Forms.Label();
             this.Round1 = new System.Windows.Forms.Label();
+            this.GameOver = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,12 +70,24 @@
             this.Round1.Text = "1";
             this.Round1.Click += new System.EventHandler(this.label1_Click_1);
             // 
+            // GameOver
+            // 
+            this.GameOver.AutoSize = true;
+            this.GameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GameOver.ForeColor = System.Drawing.Color.Lime;
+            this.GameOver.Location = new System.Drawing.Point(324, 249);
+            this.GameOver.Name = "GameOver";
+            this.GameOver.Size = new System.Drawing.Size(0, 73);
+            this.GameOver.TabIndex = 3;
+            this.GameOver.Click += new System.EventHandler(this.GameOver_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(1094, 720);
+            this.Controls.Add(this.GameOver);
             this.Controls.Add(this.Round1);
             this.Controls.Add(this.Score1);
             this.Controls.Add(this.pictureBox);
@@ -96,6 +109,7 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label Score1;
         private System.Windows.Forms.Label Round1;
+        private System.Windows.Forms.Label GameOver;
     }
 }
 

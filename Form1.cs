@@ -20,6 +20,7 @@ namespace SpaceInvaders
         int Score = 0;
         int Round = 1;
         bool NewRound = false;
+        bool EndGame = false;
         private System.Timers.Timer timer;
         const int TIMER_PERIOD = 1000 / 20;
         private List<IDraw> Drawables = new List<IDraw>();
@@ -122,10 +123,9 @@ namespace SpaceInvaders
                     }
                     invader.Point.X += invader.InvaderSpeed + (-invader.InvaderSpeed * 2 * invader.Direction);
 
-                    if (invader.Point.Y == 625)
+                    if (invader.Point.Y >= 625)
                     {
-                        Thread.Sleep(1000);
-                        Application.Exit();
+                        EndGame = true;
                     }
 
 
@@ -209,6 +209,12 @@ namespace SpaceInvaders
            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
            Score1.Text = $"Score: {Score}";
            Round1.Text = $"Round: {Round}";
+            if (EndGame == true)
+            {
+                GameOver.Text = "GAME OVER";
+                Thread.Sleep(1000);
+
+            }
             lock (Drawables)
             {
                 e.Graphics.Clear(Color.Black);
@@ -257,6 +263,11 @@ namespace SpaceInvaders
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GameOver_Click(object sender, EventArgs e)
         {
 
         }
