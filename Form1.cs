@@ -44,7 +44,7 @@ namespace SpaceInvaders
 
         private void InitGame()
         {
-            Drawables.Add(new Tank(new Point(100,400))); // Must be first in list
+            Drawables.Add(new Tank(new Point(100,625))); // Must be first in list
             Drawables.Add(new Invader(new Point(100, 100)));
             Drawables.Add(new Invader(new Point(150, 100)));
             Drawables.Add(new Invader(new Point(200, 100)));
@@ -104,15 +104,16 @@ namespace SpaceInvaders
                     if(invader.Point.X > 1020)
                     {
                         invader.Direction = 1;
-                        invader.Point.Y += 25;
+                        invader.Point.Y += 40;
                     }
                     else if(invader.Point.X < 80)
                     {
                         invader.Direction = 0;
-                        invader.Point.Y += 25;
+                        invader.Point.Y += 40;
                     }
                     Exists = true;
-                    if((Score-((Round-1)*10)) % 90 == 0 && Score % 100 != 0) 
+                    
+                    if((Score-((Round-1)*100)) == 90) 
                     {
                         invader.InvaderSpeed = 10 + Score / 80;
                     }
@@ -120,6 +121,14 @@ namespace SpaceInvaders
                         invader.InvaderSpeed = 5 + Score / 80;
                     }
                     invader.Point.X += invader.InvaderSpeed + (-invader.InvaderSpeed * 2 * invader.Direction);
+
+                    if (invader.Point.Y == 625)
+                    {
+                        Thread.Sleep(1000);
+                        Application.Exit();
+                    }
+
+
 
                 }
             }
