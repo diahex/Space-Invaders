@@ -104,15 +104,21 @@ namespace SpaceInvaders
                     if(invader.Point.X > 1020)
                     {
                         invader.Direction = 1;
-                        invader.Point.Y += 5;
+                        invader.Point.Y += 25;
                     }
                     else if(invader.Point.X < 80)
                     {
                         invader.Direction = 0;
-                        invader.Point.Y += 5;
+                        invader.Point.Y += 25;
                     }
                     Exists = true;
-                    invader.InvaderSpeed = 5 + Score / 80;
+                    if((Score-((Round-1)*10)) % 90 == 0 && Score % 100 != 0) 
+                    {
+                        invader.InvaderSpeed = 10 + Score / 80;
+                    }
+                    else {
+                        invader.InvaderSpeed = 5 + Score / 80;
+                    }
                     invader.Point.X += invader.InvaderSpeed + (-invader.InvaderSpeed * 2 * invader.Direction);
 
                 }
